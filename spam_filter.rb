@@ -2,14 +2,11 @@ require 'classifier-reborn'
 require 'natto'
 require 'csv'
 
-TYPE_NORMAL = "Normal"
-TYPE_SPAM   = "Spam"
-
 class App
   attr_reader :classifier, :natto
 
   def initialize
-    @classifier = ClassifierReborn::Bayes.new TYPE_NORMAL, TYPE_NORMAL
+    @classifier = ClassifierReborn::Bayes.new "normal", "spam"
     @natto = Natto::MeCab.new
     train
   end
@@ -26,7 +23,7 @@ class App
     normal = []
 
     CSV.foreach("data.csv") do |row|
-      if (classifier.classify(wakachigaki(row[0])) == TYPE_SPAM)
+      if (classifier.classify(wakachigaki(row[0])) == "Spam")
         spam << [row[0]]
       else
         normal << [row[0]]
@@ -49,11 +46,12 @@ class App
       data.each do |d|
         f << d
       end
+    end
   end
 
   def train
     CSV.foreach("train.csv") do |row|
-      type = row[0].nil? ? TYPE_NORMAL : TYPE_SPAM
+      type = row[0].nil? ? "normal" : "spam"
       classifier.train type, wakachigaki(row[1])
       classifier.train type, row[1]
     end
@@ -68,4 +66,4 @@ class App
   end
 end
 
-App.new.dump
+App.new.execute
