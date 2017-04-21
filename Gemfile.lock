@@ -1,0 +1,31 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    byebug (8.2.4)
+    classifier-reborn (2.1.0)
+      fast-stemmer (~> 1.0)
+    coderay (1.1.1)
+    fast-stemmer (1.0.2)
+    ffi (1.9.18)
+    method_source (0.8.2)
+    natto (1.1.1)
+      ffi (>= 1.9.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
+    slop (3.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  classifier-reborn (~> 2.1)
+  natto
+  pry-byebug
+
+BUNDLED WITH
+   1.14.6
